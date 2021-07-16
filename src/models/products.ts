@@ -33,7 +33,7 @@ class ProductStore {
     }
     create = async (card: Product):Promise<Product | undefined> => {
         try{
-            const sql = 'INSERT INTO products (product_name, product_price, card_rarity,card_type) VALUES ($1, $2, $3, $4)'
+            const sql = 'INSERT INTO products (product_name, product_price, card_rarity,card_type) VALUES ($1, $2, $3, $4) RETURNING *'
             const db = await Client.connect()
             const newEntry = await db.query(sql,[card.name,card.price,card.rarity,card.cardType])
             db.release()

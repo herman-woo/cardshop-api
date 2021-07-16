@@ -1,4 +1,5 @@
-import client from "../database";
+import Client from "../database";
+import { Order } from "./orders";
 
 export type User = {
     first: String;
@@ -11,7 +12,7 @@ class UserStore {
     index = async () => {
         try{
             const sql = `SELECT * FROM ${this.target}`
-            const connection = await client.connect()
+            const connection = await Client.connect()
             const result = await connection.query(sql)
             return result.rows
         }
@@ -21,7 +22,7 @@ class UserStore {
     }
     show = async (id: String) => {
         try{
-            const db = await client.connect()
+            const db = await Client.connect()
             const result = await db.query(`SELECT * FROM ${this.target} WHERE id=${id}`)
             db.release()
             return result.rows[0]
@@ -32,8 +33,8 @@ class UserStore {
     }
     create = async (user: User) => {
         try{
-            const sql = 'INSERT INTO users (first,last,password) VALUES ($1,$2,$3)'
-            const db = await client.connect()
+            const sql = 'INSERT INTO users (first,last,password) VALUES ($1,$2,$3) RETURNING *'
+            const db = await Client.connect()
             const newEntry = await db.query(sql,[user.first,user.last,user.password])
             db.release()
             return newEntry.rows[0]
