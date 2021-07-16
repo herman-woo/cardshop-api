@@ -13,12 +13,16 @@ CREATE ROLE udacity PASSWORD 'udacity' SUPERUSER CREATEDB CREATEROLE INHERIT LOG
 
 CREATE DATABASE card_shop_db
 
-- when starting up the database, sign in as udacity using the port:5432
+- when starting up the database, sign in as udacity
 
 ### Starting up the API
 - Open up a terminal and run 'npm install' to get all the mode_modules we are using in the API
 
 npm install
+
+- Run the app using [INSERT RUN COMMAND], the port is 8000
+
+
 
 - Run 'db-migrate up' in the terminal to generate all the required tables, and product datapoints.
 
