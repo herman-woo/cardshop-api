@@ -16,7 +16,7 @@ CREATE DATABASE card_shop_db
 - when starting up the database, sign in as udacity
 
 ### Starting up the API
-- Open up a terminal and run 'npm install' to get all the mode_modules we are using in the API
+- Open up a terminal and run 'npm install' to get all the node_modules we are using in the API
 
 npm install
 
