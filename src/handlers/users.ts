@@ -1,10 +1,12 @@
 import express from 'express'
+import jwt, { Secret } from 'jsonwebtoken'
 import UserStore from '../models/users'
 import { User } from '../models/users'
 import { Order } from '../models/orders'
 import { Dashboard } from '../services/services'
 const store = new UserStore()
 const dash = new Dashboard()
+const secret = process.env.TOKEN_SECRET as Secret
 
 const index = async (req: express.Request, res: express.Response) =>{
     const data = await store.index()
@@ -44,10 +46,27 @@ const placeOrder = async (req: express.Request, res: express.Response) => {
     const send = await dash.placeOrder(newOrder)
     res.json(send)
 }
+const authenticate = async (req: express.Request, res: express.Response) => {
+    try{
+        const user:User = {
+            first : req.body.firstName,
+            last: req.body.lastName,
+            password: req.body.password
+        }
+        const existingUser = await store.authenticate(user)
+        var token = jwt.sign({user: existingUser},secret)
+        res.json(token)
+    }
+    catch(error){
+        res.send("Unable to login")
+    }
+}
+
 const userRoutes = (app: express.Application) => {
     app.get('/users/all', index)
     app.get('/users/:id', show)
     app.post('/users/create', create)
+    app.post('/users/login', authenticate)
     app.post('/users/orders/:id/add', placeOrder)
     app.get('/users/orders/:id/:status',getOrders)
 }

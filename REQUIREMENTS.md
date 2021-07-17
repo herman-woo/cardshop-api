@@ -5,9 +5,9 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
+- Index: /products/all
+- Show: /products/:id
+- Create [token required]: /products/add
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
 
@@ -22,21 +22,22 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+-  id (SERIAL PRIMARY KEY)
+- name: product_name VARCHAR(100)
+- price: product_price (integer)
+- rarity: card_rarity VARCHAR(100)
+- type: card_type VARCHAR(10)
 
 #### User
-- id
-- firstName
-- lastName
-- password
+- id (SERIAL PRIMARY KEY)
+- firstName: first VARCHAR(20)
+- lastName: last VARCHAR(20)
+- password: password VARCHAR
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+- id (SERIAL PRIMARY KEY)
+- id of each product in the order: product_id bigint REFERENCES products(id)
+- quantity of each product in the order: order_quantity integer
+- user_id: user_id bigint REFERENCES users(id)
+- status of order (active or complete): order_status VARCHAR(10))
 

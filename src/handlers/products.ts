@@ -14,7 +14,7 @@ const show = async (req: express.Request, res: express.Response) => {
 }
 
 
-const create = async (req: express.Request, res: express.Response) => {
+const create = async (req: express.Request, res: express.Response) => {   
     const card: Product = {
         name: req.body.name,
         price: req.body.price,
