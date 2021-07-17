@@ -32,3 +32,17 @@ db-migrate up
 - routes for CRUD
 
 ## Database Schema
+
+
+## .env
+The variables used for the dotenv file are the following:
+
+POSTGRES_HOST=127.0.0.1
+POSTGRES_DB=card_shop_db
+POSTGRES_USER=udacity
+POSTGRES_PASSWORD=udacity
+BCRYPT_PASSWORD=PepperedPassword
+SALT_ROUNDS=10
+TOKEN_SECRET=udacitysecret
+
+Please copy and paste in a local .env file in the root folder.

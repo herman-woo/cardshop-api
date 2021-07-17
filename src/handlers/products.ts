@@ -1,7 +1,9 @@
 import express from 'express'
 import ProductStore from '../models/products'
 import { Product } from '../models/products'
+import Jwt, { Secret } from 'jsonwebtoken'
 const store = new ProductStore()
+const secret = process.env.TOKEN_SECRET as Secret
 
 const index = async (req: express.Request, res: express.Response) =>{
     const data = await store.index()
@@ -15,6 +17,15 @@ const show = async (req: express.Request, res: express.Response) => {
 
 
 const create = async (req: express.Request, res: express.Response) => {   
+    try{
+        const auth = req.headers.authorization as string
+        const token = auth.split(' ')[1]
+        Jwt.verify(token, secret)
+    }
+    catch(error){
+        res.status(401)
+        res.json(`Invalid token ${error}`)
+    }
     const card: Product = {
         name: req.body.name,
         price: req.body.price,
@@ -27,17 +38,6 @@ const create = async (req: express.Request, res: express.Response) => {
     catch(err){
         res.send('Could not Create Card')
     }
-}
-
-
-const topFive = async (req: express.Request, res: express.Response) => {
-    const data = await store.topFive
-    res.send(data)
-}
-
-const selection = async (req: express.Request, res: express.Response) => {
-    const data = await store.selection
-    res.send(data)
 }
 
 const productRoutes = (app: express.Application) => {

@@ -49,19 +49,25 @@ class UserStore {
             console.log(err)
         }
     }
-    authenticate = async (user: User): Promise<User | null> => {
+    authenticate = async (login: User): Promise<User | undefined> => {
         const conn = await Client.connect()
         const sql = 'SELECT password FROM users WHERE first=$1 AND last=$2'
-        const result = await conn.query(sql, [user.first,user.last])
-        const password = user.password
+        const result = await conn.query(sql,[login.first,login.last])
+        const password = login.password
+        console.log(result.rows)
         if(result.rows.length) {
           const user = result.rows[0]
-          console.log(user)
           if (bcrypt.compareSync(password+pepper, user.password)) {
+            console.log("Login Successful")
             return user
           }
+          else{
+            console.log("Incorrect Password")
+          }
         }
-    return null
+        else{
+            console.log("No user Found")
+        }
     }
 }
 

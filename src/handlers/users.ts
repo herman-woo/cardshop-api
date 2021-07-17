@@ -9,16 +9,43 @@ const dash = new Dashboard()
 const secret = process.env.TOKEN_SECRET as Secret
 
 const index = async (req: express.Request, res: express.Response) =>{
+    try{
+        const auth = req.headers.authorization as string
+        const token = auth.split(' ')[1]
+        jwt.verify(token, secret)
+    }
+    catch(error){
+        res.status(401)
+        res.json(`Invalid token ${error}`)
+    }
     const data = await store.index()
     res.json(data)
 }
 
 const show = async (req: express.Request, res: express.Response) => {
+    try{
+        const auth = req.headers.authorization as string
+        const token = auth.split(' ')[1]
+        jwt.verify(token, secret)
+    }
+    catch(error){
+        res.status(401)
+        res.json(`Invalid token ${error}`)
+    }
     const data = await store.show(req.params.id)
     res.json(data)
 }
 
 const create = async (req: express.Request, res: express.Response) => {
+    try{
+        const auth = req.headers.authorization as string
+        const token = auth.split(' ')[1]
+        jwt.verify(token, secret)
+    }
+    catch(error){
+        res.status(401)
+        res.json(`Invalid token ${error}`)
+    }
     const newUser:User = {
         first: req.body.first,
         last: req.body.last,
@@ -28,12 +55,30 @@ const create = async (req: express.Request, res: express.Response) => {
     res.json(send)
 }
 const getOrders = async (req: express.Request, res: express.Response) => {
+    try{
+        const auth = req.headers.authorization as string
+        const token = auth.split(' ')[1]
+        jwt.verify(token, secret)
+    }
+    catch(error){
+        res.status(401)
+        res.json(`Invalid token ${error}`)
+    }
     const userId = req.params.id
     const orderStatus = req.params.status
     const send = await dash.getOrders(userId,orderStatus)
     res.json(send)
 }
 const placeOrder = async (req: express.Request, res: express.Response) => {
+    try{
+        const auth = req.headers.authorization as string
+        const token = auth.split(' ')[1]
+        jwt.verify(token, secret)
+    }
+    catch(error){
+        res.status(401)
+        res.json(`Invalid token ${error}`)
+    }
     //since this route is for new orders, status will always be active
     const newOrderStatus = 'active'
     const newOrder:Order = {
@@ -58,7 +103,7 @@ const authenticate = async (req: express.Request, res: express.Response) => {
         res.json(token)
     }
     catch(error){
-        res.send("Unable to login")
+        res.send("Unable to Reach Server")
     }
 }
 
