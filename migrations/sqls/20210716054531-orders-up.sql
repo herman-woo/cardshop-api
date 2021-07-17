@@ -1,1 +1,2 @@
-CREATE TABLE orders (id SERIAL PRIMARY KEY, product_id bigint REFERENCES products(id), order_quantity integer, user_id bigint REFERENCES users(id), order_status VARCHAR(10))
+CREATE TABLE orders (id SERIAL PRIMARY KEY, product_id bigint REFERENCES products(id), order_quantity integer, user_id bigint REFERENCES users(id), order_status VARCHAR(10));
+INSERT INTO orders (product_id,order_quantity,user_id,order_status) VALUES (1,1,1,'completed'),(2,3,2,'completed'),(3,1,1,'completed'),(20,3,2,'completed'),(5,1,1,'active'),(6,1,2,'active')
