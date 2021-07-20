@@ -11,12 +11,12 @@ CREATE ROLE udacity PASSWORD 'udacity' SUPERUSER CREATEDB CREATEROLE INHERIT LOG
 - Using the SUPERUSER we created, please sign in as udacity
 - Please create a PostgreSQL database locally called 'card_shop_db'
 
-CREATE DATABASE card_shop_db
+CREATE DATABASE card_shop_db;
 
 - when starting up the database, sign in as udacity
 
 ### Starting up the API
-- Open up a terminal and run 'npm install' to get all the node_modules we are using in the API
+- Open up a terminal and run 'npm install' to get all the node_modules we are using in the API.
 
 npm install
 
@@ -32,22 +32,26 @@ db-migrate up
 ### .env
 The variables used for the dotenv file are the following:
 
-POSTGRES_HOST=127.0.0.1
-POSTGRES_DB=card_shop_db
-POSTGRES_TEST_DB=card_shop_test_db
-POSTGRES_USER=udacity
-POSTGRES_PASSWORD=udacity
+POSTGRES_HOST=
+POSTGRES_DB=
+POSTGRES_TEST_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
 BCRYPT_PASSWORD=PepperedPassword
 SALT_ROUNDS=10
 TOKEN_SECRET=udacitysecret
 ENV=dev
 
-Please copy and paste in a local .env file in the root folder.
+* for the sake of ensuring tests can run, the bcrypt password I use is 'PepperedPassword', with the salt rounds being 10, and token secret being 'udacitysecret'
+
+
+Please create a local .env file in the root folder, with the mentioned information.
+
 ## TESTING SUITE
 to test the endpoints 
 first create a new test db:
 
-card_shop_test_db
+CREATE DATABASE card_shop_test_db;
 
 next, run:
 npm run test
@@ -63,8 +67,8 @@ Once DB Migrate is up, 3 tables, 2 users, 20 products  and 5 orders will be crea
 - 'users/login' this endpoint will return a token if the body contains existing user information
 The body for this post request should look like this:
 {
-    "firstName": "Udacity"
-    "lastName": "User"
+    "firstName": "Udacity",
+    "lastName": "User",
     "password": "password"
 }
 

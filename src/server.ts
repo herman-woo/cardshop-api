@@ -10,5 +10,5 @@ app.get('/',(req: express.Request , res: express.Response) => {
 })
 userRoutes(app)
 productRoutes(app)
-//orderRoutes(app)
+orderRoutes(app)
 app.listen(port,() => console.log(`Listening on port:${port}`))

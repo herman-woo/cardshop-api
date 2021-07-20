@@ -2,7 +2,7 @@ import UserStore from "../users";
 
 const store = new UserStore()
 
-describe("Testing Users Model", () => {
+describe("The Users Model", () => {
     it('should have an index method',() => {
         expect(store.index).toBeDefined();
     })
@@ -65,7 +65,7 @@ describe("Testing Users Model", () => {
         })
         expect(result === undefined).toBeTrue();
     })
-    it('should Find Any User', async () => {
+    it('should not find any user', async () => {
         const result = await store.authenticate({
             id: 3,
             first: "Uuuuudacity",

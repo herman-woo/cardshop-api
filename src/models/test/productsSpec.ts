@@ -3,7 +3,7 @@ import { Product } from "../products";
 
 const store = new ProductStore()
 
-describe("Testing Products Model", () => {
+describe("The Products Model", () => {
     it('should have an index method',() => {
         expect(store.index).toBeDefined();
     })
