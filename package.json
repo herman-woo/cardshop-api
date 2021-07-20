@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "test": "set ENV=test && db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
+    "test": "set ENV=test && db-migrate --env test up && jasmine-ts && db-migrate --env test down && db-migrate --env test down && db-migrate --env test down",
     "set": "set process.env.ENV=test"
 
   },

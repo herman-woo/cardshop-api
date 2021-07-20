@@ -34,11 +34,13 @@ The variables used for the dotenv file are the following:
 
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=card_shop_db
+POSTGRES_TEST_DB=card_shop_test_db
 POSTGRES_USER=udacity
 POSTGRES_PASSWORD=udacity
 BCRYPT_PASSWORD=PepperedPassword
 SALT_ROUNDS=10
 TOKEN_SECRET=udacitysecret
+ENV=dev
 
 Please copy and paste in a local .env file in the root folder.
 
@@ -72,11 +74,10 @@ The body for this post request should look like this:
 
 - 'products/add' Post requst to create a new product, body of request looks like this:
 {
-    "id": 22,
-    "product_name": "Exodia the Forbidden One",
-    "product_price": 500,
-    "card_rarity": "ultra",
-    "card_type": "monster"
+    "name": "Exodia the Forbidden One",
+    "price": "500",
+    "rarity": "ultra",
+    "cardType": "monster"
 }
 
 - 'users/orders/:id/add' Creates new order for specified user by ID. Body of request looks like this:
@@ -87,3 +88,12 @@ The body for this post request should look like this:
 
 ## Database Schema
 Information for the database can be found in the Requirements document.
+
+## TESTING SUITE
+to test the endpoints 
+first create a new test db:
+
+card_shop_test_db
+
+next, run:
+npm run test

@@ -14,7 +14,6 @@ const database_variable = (): Pool => {
         password: process.env.POSTGRES_PASSWORD
     })
     }
-
     else {
         console.log("Run Test By default")
         return new Pool({
