@@ -40,10 +40,38 @@ describe("Testing Users Model", () => {
     })
     it('should Create User3', async () => {
         const result = await store.create({
-            "first": "Udacity",
-            "last": "more",
-            "password": "password"
+            id:  99,
+            first: "Udacity",
+            last: "more",
+            password: "password"
         })
         expect(result !== null).toBeTrue();
+    })
+    it('should Authenticate User3', async () => {
+        const result = await store.authenticate({
+            id: 3,
+            first: "Udacity",
+            last: "more",
+            password: "password"
+        })
+        expect(result !== null).toBeTrue();
+    })
+    it('should not Authenticate User3', async () => {
+        const result = await store.authenticate({
+            id: 3,
+            first: "Udacity",
+            last: "more",
+            password: "pasddddddsword"
+        })
+        expect(result === undefined).toBeTrue();
+    })
+    it('should Find Any User', async () => {
+        const result = await store.authenticate({
+            id: 3,
+            first: "Uuuuudacity",
+            last: "moruuuue",
+            password: "pasddddddsword"
+        })
+        expect(result === undefined).toBeTrue();
     })
 })

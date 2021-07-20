@@ -47,6 +47,7 @@ const create = async (req: express.Request, res: express.Response) => {
         res.json(`Invalid token ${error}`)
     }
     const newUser:User = {
+        id:99,
         first: req.body.first,
         last: req.body.last,
         password: req.body.password
@@ -94,6 +95,7 @@ const placeOrder = async (req: express.Request, res: express.Response) => {
 const authenticate = async (req: express.Request, res: express.Response) => {
     try{
         const user:User = {
+            id:99,
             first : req.body.firstName,
             last: req.body.lastName,
             password: req.body.password

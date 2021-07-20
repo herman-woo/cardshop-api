@@ -1,6 +1,6 @@
 # Cardshop Storefront Backend Project
 
-## How To Use:
+## How To Initialize:
 This API uses a PostgreSQL database, here are the instructions on how to initialize the project once PostgreSQL is installed locally.
 
 ### Creating a Database
@@ -43,6 +43,14 @@ TOKEN_SECRET=udacitysecret
 ENV=dev
 
 Please copy and paste in a local .env file in the root folder.
+## TESTING SUITE
+to test the endpoints 
+first create a new test db:
+
+card_shop_test_db
+
+next, run:
+npm run test
 
 ### Testing endpoints
 Once DB Migrate is up, 3 tables, 2 users, 20 products  and 5 orders will be created.
@@ -88,12 +96,3 @@ The body for this post request should look like this:
 
 ## Database Schema
 Information for the database can be found in the Requirements document.
-
-## TESTING SUITE
-to test the endpoints 
-first create a new test db:
-
-card_shop_test_db
-
-next, run:
-npm run test
