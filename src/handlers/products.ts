@@ -27,10 +27,11 @@ const create = async (req: express.Request, res: express.Response) => {
         res.json(`Invalid token ${error}`)
     }
     const card: Product = {
-        name: req.body.name,
-        price: req.body.price,
-        rarity: req.body.rarity,
-        cardType: req.body.cardType,
+        id: 99,
+        product_name: req.body.name,
+        product_price: req.body.price,
+        card_rarity: req.body.rarity,
+        card_type: req.body.cardType,
     }
     try{
         const send = await store.create(card)

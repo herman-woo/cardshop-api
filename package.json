@@ -4,7 +4,10 @@
   "description": "This API uses a PostgreSQL database, here are the instructions on how to initialize the project once PostgreSQL is installed locally.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "test": "set ENV=test && db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
+    "set": "set process.env.ENV=test"
+
   },
   "repository": {
     "type": "git",

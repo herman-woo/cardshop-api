@@ -8,7 +8,7 @@ export type Order = {
 
 export class OrdersStore {
     table: String = "orders"
-    update = async (orderId:String, update: String) => {
+    /*update = async (orderId:String, update: String): Promise<Order>| undefined => {
         try{
             const sql = 'UPDATE orders SET order_status=$2 WHERE id=$1'
             const db = await Client.connect()
@@ -20,4 +20,5 @@ export class OrdersStore {
             console.log(err)
         }       
     }
+    */
 }

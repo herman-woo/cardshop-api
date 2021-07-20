@@ -1,9 +1,10 @@
 import Client from "../database"
 export type Product = {
-    name: String;
-    price: Number;
-    rarity: String;
-    cardType: String;
+    id: number;
+    product_name: String;
+    product_price: Number;
+    card_rarity: String;
+    card_type: String;
 }
 
 class ProductStore {
@@ -35,7 +36,7 @@ class ProductStore {
         try{
             const sql = 'INSERT INTO products (product_name, product_price, card_rarity,card_type) VALUES ($1, $2, $3, $4) RETURNING *'
             const db = await Client.connect()
-            const newEntry = await db.query(sql,[card.name,card.price,card.rarity,card.cardType])
+            const newEntry = await db.query(sql,[card.product_name,card.product_price,card.card_rarity,card.card_type])
             db.release()
             return newEntry.rows[0]
         }
