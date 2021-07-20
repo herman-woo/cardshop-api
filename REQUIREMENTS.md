@@ -5,23 +5,23 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- GET : /products/all (Get all products)
-- GET : /products/:id (Get specific product)
-- POST [token required]: /products/add (Creates new product)
+- index = GET : /products/all (Get all products)
+- show = GET : /products/:id (Get specific product)
+- create = POST [token required]: /products/add (Creates new product)
 
 #### Users
-- GET [token required] : /users/all (Get all users)
-- GET [token required] : /users/:id (Get specific user)
-- POST [token required]: /users/create (Creates new user)
+- index = GET [token required] : /users/all (Get all users)
+- show = GET [token required] : /users/:id (Get specific user)
+- create = POST [token required]: /users/create (Creates new user)
 - POST [token required]: /users/login (Authenticates existing user)
 
 #### Orders
-- POST [token required]: /users/orders/:id/add (Creates new order for specified user)
-- GET  [token required]: /users/orders/:id/:status (Gets all orders of a specified stauts for specified user )
+- create = POST [token required]: /users/orders/:id/add (Creates new order for specified user)
+- show = GET  [token required]: /users/orders/:id/:status (Gets all orders of a specified stauts for specified user )
 
 ## Data Shapes
 #### Product
--  id (SERIAL PRIMARY KEY)
+- id (SERIAL PRIMARY KEY)
 - name: product_name VARCHAR(100)
 - price: product_price (integer)
 - rarity: card_rarity VARCHAR(100)
