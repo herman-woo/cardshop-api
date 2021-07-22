@@ -34,15 +34,6 @@ const show = async (req: express.Request, res: express.Response) => {
 }
 
 const create = async (req: express.Request, res: express.Response) => {
-    try{
-        const auth = req.headers.authorization as string
-        const token = auth.split(' ')[1]
-        jwt.verify(token, secret)
-    }
-    catch(error){
-        res.status(401)
-        res.json(`Invalid token ${error}`)
-    }
     const newUser:User = {
         id:99,
         first: req.body.first,
@@ -50,7 +41,8 @@ const create = async (req: express.Request, res: express.Response) => {
         password: req.body.password
     }
     const send = await store.create(newUser)
-    res.json(send)
+    var token = jwt.sign({user: send},secret)
+    res.json(token)
 }
 
 const authenticate = async (req: express.Request, res: express.Response) => {

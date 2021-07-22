@@ -61,7 +61,12 @@ Once DB Migrate is up, 3 tables, 2 users, 20 products  and 5 orders will be crea
 
 #### Endpoints that do not require a token:
 - '/' the root endpoint simply takes you too the title, and helps users know the app is running
-
+- 'users/create' creates a new user where the body of the post request looks like this:
+{
+    "first": "Udacity",
+    "last": "Four",
+    "password": "password"
+}
 - '/products/all' endpoint allows anyone to get an array of all products in the database
 - 'products/:id' where id is the specific value from the products table will return the 1 specified product
 - 'users/login' this endpoint will return a token if the body contains existing user information
@@ -72,30 +77,38 @@ The body for this post request should look like this:
     "password": "password"
 }
 
-
 #### Endpoints that require a token:
 - 'users/all' returns all users and information
 - 'users/:id' returns information for a specified user
-- 'users/create' creates a new user where the body of the post request looks like this:
-{
-    "first": "Udacity",
-    "last": "Four",
-    "password": "password"
-}
-- 'users/orders/:id/:status' where id is the user id, and status is 'completed' or active, returns an array containing all orders belonging to the requested status of the requested user.
 
 - 'products/add' Post requst to create a new product, body of request looks like this:
 {
-    "name": "Exodia the Forbidden One",
-    "price": "500",
+    "name": "Dark Magician",
+    "price": "50",
     "rarity": "ultra",
     "cardType": "monster"
 }
 
-- 'users/orders/:id/add' Creates new order for specified user by ID. Body of request looks like this:
+- 'users/:id/orders/create' Creates new order for specified user by ID. No body required
+- 'users/:id/orders' Reads all orders for specified user by ID
+- 'users/:id/orders/update' Updates status for specified order by ID, body looks like this:
 {
-    "productId": 7,
-    "qty": 3
+    "orderID": 4,
+    "status": "completed"
+}
+- 'users/:id/orders/cart/add' Creates new line item for order specified in request, body looks like this:
+{
+    "orderID": 8,
+    "productID": 3,
+    "quantity": 3
+}
+- 'users/:id/orders/cart' Shows all items under specified order of request, body looks like this:
+{
+    "orderID": 1
+}
+- 'users/:id/orders/cart/remove' Removes item specified by id via request, body looks like this:
+{
+    "cartItem": 2
 }
 
 ## Database Schema

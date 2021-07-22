@@ -4,39 +4,52 @@ The company stakeholders want to create an online storefront to showcase their g
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
 ## API Endpoints
-#### Products
-- index = GET : /products/all (Get all products)
-- show = GET : /products/:id (Get specific product)
-- create = POST [token required]: /products/add (Creates new product)
 
-#### Users
-- index = GET [token required] : /users/all (Get all users)
-- show = GET [token required] : /users/:id (Get specific user)
-- create = POST [token required]: /users/create (Creates new user)
-- POST [token required]: /users/login (Authenticates existing user)
+### Users
+- create = POST [generates token]: /users/create
+- POST [generates token]: /users/login
+- index = GET [token required] : /users/all
+- show = GET [token required] : /users/:id
 
-#### Orders
-- create = POST [token required]: /users/orders/:id/add (Creates new order for specified user)
-- show = GET  [token required]: /users/orders/:id/:status (Gets all orders of a specified stauts for specified user )
+### Products
+- index = GET : /products/all
+- show = GET : /products/:id
+- create = POST [token required]: /products/add
+
+### Orders
+- create = POST [token required]: /users/:id/orders/create
+- show = GET  [token required]: /users/:id/orders/
+ - update = POST [token required]: /users/:id/orders/update
+
+### Orders-Products
+- create = POST [token required]: /users/:id/orders/cart/add 
+- show = POST  [token required]: /users/:id/orders/cart
+- remove = DELETE [token required]: /users/:id/orders/cart/remove
+
 
 ## Data Shapes
-#### Product
+### User
+- id (SERIAL PRIMARY KEY)
+- firstName: first VARCHAR(20)
+- lastName: last VARCHAR(20)
+- password: password VARCHAR
+
+### Product
 - id (SERIAL PRIMARY KEY)
 - name: product_name VARCHAR(100)
 - price: product_price (integer)
 - rarity: card_rarity VARCHAR(100)
 - type: card_type VARCHAR(10)
 
-#### User
-- id (SERIAL PRIMARY KEY)
-- firstName: first VARCHAR(20)
-- lastName: last VARCHAR(20)
-- password: password VARCHAR
-
 #### Orders
 - id (SERIAL PRIMARY KEY)
-- id of each product in the order: product_id bigint REFERENCES products(id)
-- quantity of each product in the order: order_quantity integer
 - user_id: user_id bigint REFERENCES users(id)
 - status of order (active or complete): order_status VARCHAR(10))
+
+#### Orders-Products
+- id (SERIAL PRIMARY KEY)
+- order id: order_id bigint REFERENCES orders(id)
+- product id : product_id bigint REFERENCES products(id)
+- quantity of each product in the order: order_quantity integer
+
 

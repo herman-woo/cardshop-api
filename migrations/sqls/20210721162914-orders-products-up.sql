@@ -1,0 +1,1 @@
+CREATE TABLE orders_products (id SERIAL PRIMARY KEY, order_id bigint REFERENCES orders(id), product_id bigint REFERENCES products(id), order_quantity integer)

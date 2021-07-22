@@ -1,36 +1,49 @@
 import Client from "../database";
 export type Order = {
-    productId: Number;
-    qty: Number;
+    id: String;
     userId: String;
     status: String;
 }
 
 export class OrdersStore {
     target: String = "orders"
-    getOrders = async (userId:String,status:String):Promise<Order[] | undefined> => {
+    create = async (id:String) => {
         try{
-            const id = userId
-            const sql = 'SELECT orders.id,first,last,product_name,order_quantity,order_status FROM orders INNER JOIN products ON orders.product_id=products.id INNER JOIN users ON orders.user_id=users.id WHERE user_id=$1 AND order_status=$2'
+            const sql = 'INSERT INTO orders (user_id,order_status) VALUES ($1,$2)'
             const connection = await Client.connect()
-            const orders = await connection.query(sql,[id,status])
+            const orders = await connection.query(sql,[id,'active'])
             connection.release()
             return orders.rows
         }
-        catch(err){
-            return err
+        catch(error){
+            console.log("could not create new order")
         }
     }
-    placeOrder = async (order:Order) => {
+    read = async (id:String) => {
         try{
-            const sql = 'INSERT INTO orders (product_id,order_quantity,user_id,order_status) VALUES ($1,$2,$3,$4)'
+            const sql = 'SELECT * FROM orders WHERE user_id=$1'
             const connection = await Client.connect()
-            const orders = await connection.query(sql,[order.productId,order.qty,order.userId,order.status])
+            const orders = await connection.query(sql,[id])
             connection.release()
             return orders.rows
         }
-        catch(err){
-            return err
+        catch(error){
+            console.log("could not find any orders for user")
+        }
+    }
+    update = async (update:Order) => {
+        try{
+            const order = update.id
+            const user = update.userId
+            const status = update.status
+            const sql = 'UPDATE orders SET order_status=$1 WHERE id=$2 AND user_id=$3'
+            const connection = await Client.connect()
+            const orders = await connection.query(sql,[status,order,user])
+            connection.release()
+            return orders.rows
+        }
+        catch(error){
+            console.log("could not update order",error)
         }
     }
 }
