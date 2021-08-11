@@ -10,7 +10,6 @@
     "set": "set process.env.ENV=test"
 
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/herman-woo/cardshop-api.git"
