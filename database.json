@@ -1,17 +1,17 @@
 {
     "dev": {
       "driver": "pg",
-      "host": "127.0.0.1",
+      "host": "database-1.cyqi22dyg4nn.us-east-1.rds.amazonaws.com",
       "database": "card_shop_db",
-      "user": "udacity",
-      "password": "udacity"
+      "user": "postgres",
+      "password": "postgres"
     },
     "test": {
       "driver": "pg",
-      "host": "127.0.0.1",
+      "host": "database-1.cyqi22dyg4nn.us-east-1.rds.amazonaws.com",
       "database": "card_shop_test_db",
-      "user": "udacity",
-      "password": "udacity"
+      "user": "postgres",
+      "password": "postgres"
     }
   }
   

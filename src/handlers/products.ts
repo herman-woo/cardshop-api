@@ -30,8 +30,14 @@ const create = async (req: express.Request, res: express.Response) => {
         id: 99,
         product_name: req.body.name,
         product_price: req.body.price,
+        product_stock: req.body.stock,
         card_rarity: req.body.rarity,
-        card_type: req.body.cardType,
+        card_type: req.body.type,
+        card_atk: req.body.atk,
+        card_def: req.body.def,
+        card_lv: req.body.lv,
+        card_description: req.body.desc,
+        card_img_url: req.body.imgURL
     }
     try{
         const send = await store.create(card)
