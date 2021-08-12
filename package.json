@@ -8,7 +8,6 @@
     "test": "set ENV=test && db-migrate --env test up && jasmine-ts && db-migrate --env test down && db-migrate --env test down && db-migrate --env test down",
     "refresh-test": "db-migrate --env test down && db-migrate --env test down && db-migrate --env test down && db-migrate --env test down && db-migrate --env test down",
     "set": "set process.env.ENV=test"
-
   },
   "repository": {
     "type": "git",
